@@ -11,6 +11,10 @@
 |
 */
 
+/* 初期画面
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', 'DiaryController@index')->name('diary.index'); // 追加
