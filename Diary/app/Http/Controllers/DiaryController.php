@@ -37,27 +37,33 @@ class DiaryController extends Controller
         return redirect()->route('diary.index'); // 一覧ページにリダイレクト
     }
 
-    public function destroy(int $id)
+    public function destroy(Diary $diary)
     {
-        $diary = Diary::find($id);
-
+        if (Auth::user()->id !== $diary->user_id){
+            abort(403);
+        }
+        
         $diary->delete();
 
         return redirect()->route('diary.index');
     }
 
-    public function edit(int $id)
+    public function edit(Diary $diary)
     {
-        $diary = Diary::find($id);
+        if (Auth::user()->id !== $diary->user_id){
+            abort(403);
+        }
 
         return view('diaries.edit', [
             'diary' => $diary,
         ]);
     }
 
-    public function update(int $id, CreateDiary $request)
+    public function update(Diary $diary, CreateDiary $request)
     {
-        $diary = Diary::find($id);
+        if (Auth::user()->id !== $diary->user_id){
+            abort(403);
+        }
 
         $diary->title = $request->title;
         $diary->body = $request->body;
