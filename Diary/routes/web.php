@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('diary/{diary}/edit', 'DiaryController@edit')->name('diary.edit'); // 編集画面
     Route::put('diary/{diary}/update', 'DiaryController@update')->name('diary.update'); // 更新処理
+
+    Route::post('diary/{id}/like', 'DiaryController@like');
+    Route::post('diary/{id}/dislike', 'DiaryController@dislike');
 });
 
 // 認証コマンド後に追記される

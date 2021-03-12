@@ -12,7 +12,7 @@ class DiaryController extends Controller
     public function index()
     {
         // $diaries = Diary::all();
-        $diaries = Diary::orderBy('id', 'desc')->get(); // 降順(作成した順)で取得
+        $diaries = Diary::with('likes')->orderBy('id', 'desc')->get(); // 降順(作成した順)で取得
         // dd($diaries); // ダンプ確認
 
         // view/diaries/index.blade.phpを表示
@@ -42,7 +42,7 @@ class DiaryController extends Controller
         if (Auth::user()->id !== $diary->user_id){
             abort(403);
         }
-        
+
         $diary->delete();
 
         return redirect()->route('diary.index');
@@ -71,5 +71,19 @@ class DiaryController extends Controller
         $diary->save();
 
         return redirect()->route('diary.index');
+    }
+
+    public function like(int $id)
+    {
+        $diary = Diary::where('id', $id)->with('likes')->first();
+
+        $diary->likes()->attach(Auth::user()->id);
+    }
+
+    public function dislike(int $id)
+    {
+        $diary = Diary::where('id', $id)->with('likes')->first();
+
+        $diary->likes()->detach(Auth::user()->id);
     }
 }
