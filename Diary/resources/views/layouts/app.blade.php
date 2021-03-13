@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- jQueryの読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js" defer></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
     <!-- JSの読み込み -->
     <script src="{{ asset('js/diary.js') }}" defer></script>
 
