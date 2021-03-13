@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- jQueryの読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js" defer></script>
-    
+
     <!-- JSの読み込み -->
     <script src="{{ asset('js/diary.js') }}" defer></script>
 
@@ -57,6 +57,9 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <img src="{{ asset(Auth::user()->picture_path) }}" alt="" height="40px">
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

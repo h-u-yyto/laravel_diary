@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'yt',
             'email' => 'yt@gmail.com',
+            'picture_path' => 'storage/images/profilePicture/default.png',
             'password' => bcrypt('123456'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
